@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         // mWebView.setWebViewClient(new MyWebViewClient());
 
         // LOCAL RESOURCE
-        // mWebView.loadUrl("file:///android_asset/index.html");
+        mWebView.loadUrl("file:///android_asset/note.html");
     }
 
     // Prevent the back-button from closing the app

@@ -1,34 +1,24 @@
-This is a template project for Android Studio that allows you to create an android webview application in minutes. You can use it to create a simple app for your website or as a starting point for your HTML5 based android app.
+This app simply loads a webview of the online Nextcloud Notes app. URL is currently hardcoded.
 
-### Getting started
+To remove the header bar and fix other styling, the following must be added to the end of `custom_apps/notes/js/public/app.min.js`:
 
-[Download](https://github.com/slymax/webview/archive/master.zip) or clone this repository and import it into Android Studio.
+```
+function isNativeApp() {
+  return /notes\-android\/[0-9\.]+$/.test(navigator.userAgent);
+ }
 
-### Using a remote source
-
-If you want to create an app that displays the content of a remote website
-
-1. uncomment lines **30** and **31** in `MainActivity.java` and replace `http://example.com` with your remote source
-
-	```java
-	mWebView.loadUrl("http://example.com");
-	mWebView.setWebViewClient(new MyWebViewClient());
-	```
-
-2. open the `MyWebViewClient.java` file and replace `example.com` on line **14** with your custom hostname
-
-	```java
-	if (Objects.requireNonNull(Uri.parse(url).getHost()).endsWith("example.com")) {
-	```
-
-### Using a local source
-
-If you want to create a local HTML5 android app
-
-1. uncomment line **34** in `MainActivity.java`
-
-	```java
-	mWebView.loadUrl("file:///android_asset/index.html");
-	```
-
-2. put all your files (including your `index.html`) in the `assets` directory
+if (isNativeApp()) {
+  var node = document.createElement('style');
+  node.innerHTML += '#header {display: none !important}';
+  node.innerHTML += '#content {padding-top: 0;}';
+  node.innerHTML += '#app-navigation {top: 0}';
+  node.innerHTML += '#app-navigation-toggle {width: 4em; height: 4em; margin-top: .5em}';
+  node.innerHTML += '.CodeMirror-sizer {border: none}';
+  node.innerHTML += '.CodeMirror-lines, .CodeMirror-code {border: none}';
+  node.innerHTML += '.CodeMirror-line {padding-left: 20px !important}';
+  node.innerHTML += '.CodeMirror-line:first-of-type {position: fixed; width: 100%; top: 0em; padding: 1.2em 0; padding-left: 3.5em !important; border-bottom: solid 1px #DDD; background: #FFF; z-index: 9999}';
+  node.innerHTML += '.CodeMirror-line:first-of-type .cm-formatting-header-1 {display: none !important;}';
+  node.innerHTML += '.CodeMirror {padding-top: 3.5em;}';
+  document.body.appendChild(node);
+}
+```

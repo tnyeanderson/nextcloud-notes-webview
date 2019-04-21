@@ -1,4 +1,4 @@
-package com.example.app;
+package com.tnyeanderson.nextcloudnotes;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,13 +25,21 @@ public class MainActivity extends Activity {
         // Enable Javascript
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setUserAgentString(
+                webSettings.getUserAgentString() + " " + "notes-android/1.0"
+        );
+
+        // Inject CSS
+        // String html = download("https://thomasanderson.cloud/apps/notes/");
+        // html =html.replaceFirst("</head>", "<style>#header {display: none;}</style></head>");
+        // mWebView.loadData(html, "text/html", null);
 
         // REMOTE RESOURCE
-        // mWebView.loadUrl("http://example.com");
+        mWebView.loadUrl("https://thomasanderson.cloud/apps/notes/");
         // mWebView.setWebViewClient(new MyWebViewClient());
 
         // LOCAL RESOURCE
-        mWebView.loadUrl("file:///android_asset/note.html");
+        // mWebView.loadUrl("file:///android_asset/note.html");
     }
 
     // Prevent the back-button from closing the app

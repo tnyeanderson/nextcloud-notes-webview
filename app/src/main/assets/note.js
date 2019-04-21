@@ -76,7 +76,7 @@ var editorElement = $(simplemde.codemirror.getWrapperElement());
 
 
 
-simplemde.value(testnote);
+simplemde.value(document.getElementById('Note').text());
 simplemde.codemirror.focus();
 
 /* Initialize Checkboxes */

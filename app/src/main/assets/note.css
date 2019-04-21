@@ -5,7 +5,9 @@
  * See the COPYING file.
  */
 
-
+#header {
+    display: none;
+}
 
 /* special styling to make editor subtle and fit the window */
 .CodeMirror {

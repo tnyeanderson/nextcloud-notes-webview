@@ -7,6 +7,7 @@ import android.webkit.WebViewClient;
 
 class MyWebViewClient extends WebViewClient {
 
+    /*
     @SuppressWarnings("deprecation")
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -19,4 +20,13 @@ class MyWebViewClient extends WebViewClient {
         view.getContext().startActivity(intent);
         return true;
     }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        //hide loading image
+        view.findViewById(R.id.splash_image).setVisibility(View.GONE);
+        //show webview
+        view.findViewById(R.id.activity_main_webview).setVisibility(View.VISIBLE);
+    }
+    */
 }

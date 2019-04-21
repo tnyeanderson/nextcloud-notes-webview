@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
@@ -20,13 +22,41 @@ public class MainActivity extends Activity {
         mWebView = findViewById(R.id.activity_main_webview);
 
         // Force links and redirects to open in the WebView instead of in a browser
-        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebViewClient(new WebViewClient() {
+            /*
+            @Override
+            public boolean onPageStarted(WebView view, String url) {
+                Log.d("notes-log", "loaded");
+                //hide loading image
+                findViewById(R.id.splash_image).setVisibility(View.GONE);
+                //show webview
+                findViewById(R.id.activity_main_webview).setVisibility(View.VISIBLE);
+
+                return true;
+            }
+            */
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                new android.os.Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Log.d("notes-log", "loaded");
+                        //show webview
+                        findViewById(R.id.activity_main_webview).setVisibility(View.VISIBLE);
+                        //hide loading image
+                        findViewById(R.id.splash_image).setVisibility(View.GONE);
+                    }
+                }, 1000);
+            }
+
+
+        });
 
         // Enable Javascript
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString(
-                webSettings.getUserAgentString() + " " + "notes-android/1.0"
+                webSettings.getUserAgentString() + " " + getString(R.string.user_agent_suffix)
         );
 
         // Inject CSS
@@ -35,7 +65,7 @@ public class MainActivity extends Activity {
         // mWebView.loadData(html, "text/html", null);
 
         // REMOTE RESOURCE
-        mWebView.loadUrl("https://thomasanderson.cloud/apps/notes/");
+        mWebView.loadUrl(getString(R.string.base_url) + "apps/notes/");
         // mWebView.setWebViewClient(new MyWebViewClient());
 
         // LOCAL RESOURCE
@@ -50,6 +80,17 @@ public class MainActivity extends Activity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    // Reload webview onResume
+    @Override
+    public void onResume() {
+        super.onResume();
+        //hide loading image
+        findViewById(R.id.splash_image).setVisibility(View.VISIBLE);
+        //show webview
+        findViewById(R.id.activity_main_webview).setVisibility(View.GONE);
+        mWebView.reload();
     }
 
 }

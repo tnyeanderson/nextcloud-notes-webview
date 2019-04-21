@@ -3,5 +3,6 @@
 
     <string name="app_name">Notes</string>
     <string name="user_agent_suffix">notes-android/1.0</string>
+    <string name="base_url">https://thomasanderson.cloud/</string>
 
 </resources>

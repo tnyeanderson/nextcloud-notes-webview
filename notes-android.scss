@@ -1,0 +1,67 @@
+html[data-useragent*='notes-android'] {
+    #header {
+        display: none !important
+    }
+
+    #content {
+        padding-top: 0;
+    }
+
+    #app-navigation-toggle {
+        width: 4em;
+        height: 4em;
+        bottom: 1em;
+        left: 1em;
+        border-radius: 50%;
+        background-color: #cfbe5c; /* Inverted #303F9F */
+        filter: invert(1); /* White icon */
+        opacity: 1;
+    }
+
+    #app-navigation {
+        top: 0;
+        height: 100%;
+    }
+
+    .CodeMirror {
+        padding-top: 0;
+        padding-right: .5em;
+        width: 100%;
+        overflow: scroll;
+
+        &:not(.CodeMirror-focused) {
+            filter: brightness(40%);
+        }
+
+        .CodeMirror-sizer,
+        .CodeMirror-lines,
+        .CodeMirror-code {
+            border: none !important;
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .CodeMirror-line {
+            padding-left: 20px;
+        }
+
+        .CodeMirror-line:first-of-type {
+            padding: 1.2em 17px;
+            border-bottom: solid 1px #DDD;
+            background: #FFF;
+        }
+
+        .CodeMirror-line:first-of-type .cm-formatting-header-1 {
+            display: none !important;
+        }
+    }
+
+    #app-content .note-meta {
+        text-align: right;
+        border-top: solid 1px #DDD;
+
+        button.btn-fullscreen {
+            display: none;
+        }
+    }
+}

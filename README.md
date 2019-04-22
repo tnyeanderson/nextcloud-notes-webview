@@ -4,6 +4,9 @@
 
 This Android app simply loads a webview of the online Nextcloud Notes app. **Base URL is currently hardcoded in `strings.xml`. Change before installing!**
 
+![Note View](./screenshot_main.png)
+![Menu View](./screenshot_menu.png)
+
 ## IMPORTANT (THIS APP IS IN ALPHA)
 * This app **requires internet access** to work!
 * **Large notes** (>400-500 lines) will have noticeable lag/latency

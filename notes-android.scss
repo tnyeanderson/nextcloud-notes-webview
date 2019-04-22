@@ -10,7 +10,7 @@ html[data-useragent*='notes-android'] {
     #app-navigation-toggle {
         width: 4em;
         height: 4em;
-        bottom: 1em;
+        top: 90vh;
         left: 1em;
         border-radius: 50%;
         background-color: #cfbe5c; /* Inverted #303F9F */
@@ -21,17 +21,45 @@ html[data-useragent*='notes-android'] {
     #app-navigation {
         top: 0;
         height: 100%;
+
+        /* Disable hover items on note list */
+        li:hover .app-navigation-entry-utils li {
+            display: none;
+        }
+    }
+
+    body {
+        overflow-x: hidden;
+
+        /* When menu is open */
+        &.snapjs-left {
+            #app-navigation-toggle {
+                width: 100%;
+                height: 100%;
+                filter: invert(0);
+                background: #000;
+                opacity: .4;
+                border-radius: 0;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        }
     }
 
     .CodeMirror {
         padding-top: 0;
+        padding-bottom: 9em;
         padding-right: .5em;
         width: 100%;
         overflow: scroll;
 
+        /*
         &:not(.CodeMirror-focused) {
             filter: brightness(40%);
         }
+        */
 
         .CodeMirror-sizer,
         .CodeMirror-lines,
@@ -56,12 +84,16 @@ html[data-useragent*='notes-android'] {
         }
     }
 
-    #app-content .note-meta {
-        text-align: right;
-        border-top: solid 1px #DDD;
+    #app-content {
+        z-index: 400;
 
-        button.btn-fullscreen {
-            display: none;
+        .note-meta {
+            text-align: right;
+            border-top: solid 1px #DDD;
+
+            button.btn-fullscreen {
+                display: none;
+            }
         }
     }
 }

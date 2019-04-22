@@ -16,6 +16,7 @@ html[data-useragent*='notes-android'] {
         background-color: #cfbe5c; /* Inverted #303F9F */
         filter: invert(1); /* White icon */
         opacity: 1;
+        box-shadow: 0 0 0.5em #AAA;
     }
 
     #app-navigation {
